@@ -1,4 +1,28 @@
 {
-  "cleanUrls": true
+  "version": 2,
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "installCommand": null,
+  "framework": null,
+  "headers": [
+    {
+      "source": "/(.*)\\.js",
+      "headers": [{ "key": "Content-Type", "value": "application/javascript" }]
+    },
+    {
+      "source": "/(.*)\\.css",
+      "headers": [{ "key": "Content-Type", "value": "text/css" }]
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
 }
 
