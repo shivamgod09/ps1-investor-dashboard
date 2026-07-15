@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InvestorOS — Investor & Growth Office Platform</title>
+  <meta name="description" content="Automate investor relations, board reporting, growth metrics dashboards, and fundraising readiness for your portfolio company." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+    </div>
+    <span class="brand-name">InvestorOS</span>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-group-label">Overview</div>
+    <a href="#" class="nav-item active" data-section="dashboard">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </a>
+    <a href="#" class="nav-item" data-section="growth-metrics">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      Growth Metrics
+    </a>
+
+    <div class="nav-group-label">Investor Relations</div>
+    <a href="#" class="nav-item" data-section="investor-reporting">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Investor Reporting
+    </a>
+    <a href="#" class="nav-item" data-section="board-deck">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      Board Deck Builder
+    </a>
+    <a href="#" class="nav-item" data-section="fundraising">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      Fundraising Readiness
+    </a>
+
+    <div class="nav-group-label">Analytics</div>
+    <a href="#" class="nav-item" data-section="scenario">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+      Scenario Planning
+    </a>
+    <a href="#" class="nav-item" data-section="crm">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      CRM Analytics
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-chip">
+      <div class="user-avatar">AG</div>
+      <div class="user-info">
+        <span class="user-name">Analyst</span>
+        <span class="user-role">Growth Office</span>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main-content" id="main-content">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <button class="menu-toggle" id="menu-toggle">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="topbar-title" id="page-title">Executive Dashboard</div>
+    <div class="topbar-actions">
+      <div class="period-selector">
+        <button class="period-btn active" data-period="Q2 2026">Q2 2026</button>
+        <button class="period-btn" data-period="Q1 2026">Q1 2026</button>
+        <button class="period-btn" data-period="FY 2025">FY 2025</button>
+      </div>
+      <button class="btn-export" id="export-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ DASHBOARD SECTION ============ -->
+  <section class="section active" id="section-dashboard">
+    <div class="section-header">
+      <h1>Executive Dashboard</h1>
+      <p>Real-time investor-grade metrics and KPI tracking</p>
+    </div>
+
+    <!-- KPI CARDS -->
+    <div class="kpi-grid">
+      <div class="kpi-card" data-trend="up">
+        <div class="kpi-label">Annual Recurring Revenue</div>
+        <div class="kpi-value">$4.82M</div>
+        <div class="kpi-change positive">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+          +18.4% MoM
+        </div>
+        <div class="kpi-sparkline-wrap"><canvas class="sparkline" id="spark-arr"></canvas></div>
+      </div>
+      <div class="kpi-card" data-trend="up">
+        <div class="kpi-label">Net Dollar Retention</div>
+        <div class="kpi-value">114%</div>
+        <div class="kpi-change positive">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+          +3pp QoQ
+        </div>
+        <div class="kpi-sparkline-wrap"><canvas class="sparkline" id="spark-ndr"></canvas></div>
+      </div>
+      <div class="kpi-card" data-trend="up">
+        <div class="kpi-label">Logo Acquisition (MTD)</div>
+        <div class="kpi-value">47</div>
+        <div class="kpi-change positive">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+          +12 vs last month
+        </div>
+        <div class="kpi-sparkline-wrap"><canvas class="sparkline" id="spark-logo"></canvas></div>
+      </div>
+      <div class="kpi-card" data-trend="down">
+        <div class="kpi-label">Churn Rate</div>
+        <div class="kpi-value">1.8%</div>
+        <div class="kpi-change negative">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          -0.4pp vs target
+        </div>
+        <div class="kpi-sparkline-wrap"><canvas class="sparkline" id="spark-churn"></canvas></div>
+      </div>
+      <div class="kpi-card" data-trend="up">
+        <div class="kpi-label">LTV / CAC Ratio</div>
+        <div class="kpi-value">5.2x</div>
+        <div class="kpi-change positive">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+          Target: 3x ✓
+        </div>
+        <div class="kpi-sparkline-wrap"><canvas class="sparkline" id="spark-ltvcac"></canvas></div>
+      </div>
+      <div class="kpi-card" data-trend="up">
+        <div class="kpi-label">Pipeline Velocity</div>
+        <div class="kpi-value">$218K</div>
+        <div class="kpi-change positive">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+          /week · +22% QoQ
+        </div>
+        <div class="kpi-sparkline-wrap"><canvas class="sparkline" id="spark-pipeline"></canvas></div>
+      </div>
+    </div>
+
+    <!-- CHARTS ROW -->
+    <div class="charts-row">
+      <div class="chart-card wide">
+        <div class="chart-card-header">
+          <div>
+            <div class="chart-title">ARR Growth & MRR Bridge</div>
+            <div class="chart-subtitle">New, Expansion, Contraction, Churn</div>
+          </div>
+          <div class="chart-legend">
+            <span class="legend-dot" style="background:#6C63FF"></span>New ARR
+            <span class="legend-dot" style="background:#00D4AA"></span>Expansion
+            <span class="legend-dot" style="background:#FF6B6B"></span>Churn
+          </div>
+        </div>
+        <canvas id="arrChart" height="200"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <div>
+            <div class="chart-title">Revenue Mix</div>
+            <div class="chart-subtitle">By product segment</div>
+          </div>
+        </div>
+        <canvas id="revMixChart" height="200"></canvas>
+      </div>
+    </div>
+
+    <!-- ACTIVITY + FUNDRAISE STATUS -->
+    <div class="bottom-row">
+      <div class="activity-feed">
+        <div class="card-header-row">
+          <div class="card-title">Investor Activity Feed</div>
+          <span class="badge-live">LIVE</span>
+        </div>
+        <ul class="feed-list" id="activity-feed">
+          <li class="feed-item">
+            <div class="feed-dot blue"></div>
+            <div class="feed-content">
+              <span class="feed-title">Board update sent to 12 investors</span>
+              <span class="feed-time">2 min ago</span>
+            </div>
+          </li>
+          <li class="feed-item">
+            <div class="feed-dot green"></div>
+            <div class="feed-content">
+              <span class="feed-title">Sequoia Capital viewed Q2 deck</span>
+              <span class="feed-time">18 min ago</span>
+            </div>
+          </li>
+          <li class="feed-item">
+            <div class="feed-dot purple"></div>
+            <div class="feed-content">
+              <span class="feed-title">NDR updated — 114% (↑3pp)</span>
+              <span class="feed-time">1 hr ago</span>
+            </div>
+          </li>
+          <li class="feed-item">
+            <div class="feed-dot yellow"></div>
+            <div class="feed-content">
+              <span class="feed-title">Data room access granted to Tiger Global</span>
+              <span class="feed-time">3 hr ago</span>
+            </div>
+          </li>
+          <li class="feed-item">
+            <div class="feed-dot green"></div>
+            <div class="feed-content">
+              <span class="feed-title">3 new logos signed this week</span>
+              <span class="feed-time">5 hr ago</span>
+            </div>
+          </li>
+          <li class="feed-item">
+            <div class="feed-dot blue"></div>
+            <div class="feed-content">
+              <span class="feed-title">Series B model updated — $25M target</span>
+              <span class="feed-time">Yesterday</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="fundraise-status-card">
+        <div class="card-header-row">
+          <div class="card-title">Fundraising Readiness</div>
+          <span class="readiness-badge">84%</span>
+        </div>
+        <div class="readiness-bar-wrap">
+          <div class="readiness-bar" style="width:84%"></div>
+        </div>
+        <ul class="readiness-checklist">
+          <li class="check-item done"><span class="check-icon">✓</span> Financial model (3-statement)</li>
+          <li class="check-item done"><span class="check-icon">✓</span> Cap table & waterfall</li>
+          <li class="check-item done"><span class="check-icon">✓</span> ARR bridge / cohort analysis</li>
+          <li class="check-item done"><span class="check-icon">✓</span> Board deck (Q2 2026)</li>
+          <li class="check-item pending"><span class="check-icon">○</span> Data room — legal docs</li>
+          <li class="check-item pending"><span class="check-icon">○</span> References & customer list</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GROWTH METRICS SECTION ============ -->
+  <section class="section" id="section-growth-metrics">
+    <div class="section-header">
+      <h1>Growth Metrics</h1>
+      <p>SaaS unit economics, retention cohorts & pipeline analytics</p>
+    </div>
+
+    <div class="metrics-tabs">
+      <button class="tab-btn active" data-tab="saas">SaaS Metrics</button>
+      <button class="tab-btn" data-tab="cohorts">Cohort Analysis</button>
+      <button class="tab-btn" data-tab="pipeline">Pipeline</button>
+    </div>
+
+    <div class="tab-content active" id="tab-saas">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">MRR</div>
+          <div class="kpi-value">$401K</div>
+          <div class="kpi-change positive">↑ 15.3% MoM</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">CAC</div>
+          <div class="kpi-value">$3,840</div>
+          <div class="kpi-change positive">↓ 8% vs LQ (good)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">LTV</div>
+          <div class="kpi-value">$19,968</div>
+          <div class="kpi-change positive">↑ 5.2x LTV:CAC</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Payback Period</div>
+          <div class="kpi-value">11.5 mo</div>
+          <div class="kpi-change positive">↓ Target &lt;18mo ✓</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Gross Margin</div>
+          <div class="kpi-value">72%</div>
+          <div class="kpi-change positive">↑ 2pp QoQ</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Rule of 40</div>
+          <div class="kpi-value">58</div>
+          <div class="kpi-change positive">↑ Exceeds target ✓</div>
+        </div>
+      </div>
+      <div class="charts-row">
+        <div class="chart-card wide">
+          <div class="chart-card-header">
+            <div>
+              <div class="chart-title">MRR Growth Waterfall</div>
+              <div class="chart-subtitle">New · Expansion · Contraction · Churn</div>
+            </div>
+          </div>
+          <canvas id="mrrWaterfallChart" height="220"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <div class="chart-title">CAC vs LTV Trend</div>
+            </div>
+          </div>
+          <canvas id="cacLtvChart" height="220"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-cohorts">
+      <div class="chart-card full-width">
+        <div class="chart-card-header">
+          <div>
+            <div class="chart-title">Cohort Retention Heatmap</div>
+            <div class="chart-subtitle">Monthly cohorts — revenue retention %</div>
+          </div>
+        </div>
+        <div class="cohort-table-wrap">
+          <table class="cohort-table" id="cohort-table"></table>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-pipeline">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Pipeline</div>
+          <div class="kpi-value">$6.2M</div>
+          <div class="kpi-change positive">↑ 28% QoQ</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Weighted Pipeline</div>
+          <div class="kpi-value">$2.8M</div>
+          <div class="kpi-change positive">3.2x coverage</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Avg Deal Size</div>
+          <div class="kpi-value">$48K</div>
+          <div class="kpi-change positive">↑ Enterprise mix</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Win Rate</div>
+          <div class="kpi-value">34%</div>
+          <div class="kpi-change positive">↑ 4pp vs LQ</div>
+        </div>
+      </div>
+      <div class="chart-card full-width">
+        <div class="chart-card-header">
+          <div>
+            <div class="chart-title">Pipeline by Stage</div>
+            <div class="chart-subtitle">Deal count and value distribution</div>
+          </div>
+        </div>
+        <canvas id="pipelineChart" height="200"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INVESTOR REPORTING SECTION ============ -->
+  <section class="section" id="section-investor-reporting">
+    <div class="section-header">
+      <h1>Investor Reporting</h1>
+      <p>Automate investor updates, track engagement & manage your investor list</p>
+    </div>
+
+    <div class="investor-grid">
+      <div class="investor-list-card">
+        <div class="card-header-row">
+          <div class="card-title">Investor Roster</div>
+          <button class="btn-sm" id="add-investor-btn">+ Add</button>
+        </div>
+        <div class="search-bar-wrap">
+          <input type="text" class="search-input" placeholder="Search investors..." id="investor-search" />
+        </div>
+        <ul class="investor-list" id="investor-list">
+          <!-- JS populated -->
+        </ul>
+      </div>
+
+      <div class="report-composer">
+        <div class="card-header-row">
+          <div class="card-title">Update Composer</div>
+          <span class="badge-auto">AUTO</span>
+        </div>
+        <div class="composer-form">
+          <div class="form-group">
+            <label>Report Type</label>
+            <select class="form-select" id="report-type">
+              <option>Monthly Investor Update</option>
+              <option>Board Memo</option>
+              <option>Quarterly Investor Letter</option>
+              <option>Milestone Announcement</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Period</label>
+            <select class="form-select" id="report-period">
+              <option>June 2026</option>
+              <option>May 2026</option>
+              <option>Q2 2026</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Highlights (auto-populated from metrics)</label>
+            <div class="highlights-chips" id="highlights-chips">
+              <span class="chip">ARR +18.4%</span>
+              <span class="chip">NDR 114%</span>
+              <span class="chip">47 new logos</span>
+              <span class="chip">Rule of 40: 58</span>
+              <span class="chip chip-add" id="add-chip">+ Add</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Narrative</label>
+            <textarea class="form-textarea" id="report-narrative" rows="5" placeholder="Add CEO narrative and context..."></textarea>
+          </div>
+          <div class="composer-actions">
+            <button class="btn-ghost" id="preview-btn">Preview</button>
+            <button class="btn-primary" id="generate-report-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              Generate & Send
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPORT PREVIEW MODAL -->
+    <div class="modal-overlay" id="report-modal" style="display:none">
+      <div class="modal-box">
+        <div class="modal-header">
+          <span class="modal-title">Report Preview</span>
+          <button class="modal-close" id="close-modal">✕</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-footer">
+          <button class="btn-ghost" id="modal-cancel">Cancel</button>
+          <button class="btn-primary" id="modal-send">Send to All Investors</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BOARD DECK BUILDER SECTION ============ -->
+  <section class="section" id="section-board-deck">
+    <div class="section-header">
+      <h1>Board Deck Builder</h1>
+      <p>Auto-generate investor-grade board presentations from live data</p>
+    </div>
+
+    <div class="deck-builder-layout">
+      <div class="slide-list">
+        <div class="card-header-row">
+          <div class="card-title">Slide Outline</div>
+          <button class="btn-sm" id="add-slide-btn">+ Slide</button>
+        </div>
+        <ul class="slides-ul" id="slides-ul">
+          <!-- JS populated -->
+        </ul>
+      </div>
+
+      <div class="slide-preview-panel">
+        <div class="slide-canvas" id="slide-canvas">
+          <!-- JS populated -->
+        </div>
+        <div class="slide-toolbar">
+          <button class="tool-btn" id="prev-slide">‹ Prev</button>
+          <span id="slide-counter">1 / 8</span>
+          <button class="tool-btn" id="next-slide">Next ›</button>
+          <button class="btn-primary" id="export-deck-btn" style="margin-left:auto">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export Deck
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FUNDRAISING READINESS SECTION ============ -->
+  <section class="section" id="section-fundraising">
+    <div class="section-header">
+      <h1>Fundraising Readiness</h1>
+      <p>Track valuation, data room, and raise preparation checklist</p>
+    </div>
+
+    <div class="fundraising-layout">
+      <!-- Valuation Model -->
+      <div class="valuation-card">
+        <div class="card-title">Valuation Model</div>
+        <div class="valuation-inputs">
+          <div class="form-group">
+            <label>ARR ($M)</label>
+            <input type="number" class="form-input" id="val-arr" value="4.82" step="0.1" />
+          </div>
+          <div class="form-group">
+            <label>Revenue Multiple</label>
+            <input type="number" class="form-input" id="val-multiple" value="12" step="0.5" />
+          </div>
+          <div class="form-group">
+            <label>Growth Rate (%)</label>
+            <input type="number" class="form-input" id="val-growth" value="120" step="5" />
+          </div>
+          <div class="form-group">
+            <label>Gross Margin (%)</label>
+            <input type="number" class="form-input" id="val-margin" value="72" step="1" />
+          </div>
+        </div>
+        <button class="btn-primary" id="calc-valuation">Calculate Valuation</button>
+        <div class="valuation-result" id="valuation-result">
+          <div class="val-result-label">Estimated Enterprise Value</div>
+          <div class="val-result-value" id="val-result-value">$57.8M</div>
+          <div class="val-result-range" id="val-result-range">Range: $48M – $69M (±20%)</div>
+        </div>
+      </div>
+
+      <!-- Data Room Tracker -->
+      <div class="dataroom-card">
+        <div class="card-title">Data Room Tracker</div>
+        <div class="dataroom-categories" id="dataroom-categories">
+          <!-- JS populated -->
+        </div>
+      </div>
+
+      <!-- Raise Tracker -->
+      <div class="raise-tracker-card">
+        <div class="card-title">Series B Raise Tracker</div>
+        <div class="raise-stats">
+          <div class="raise-stat">
+            <div class="raise-stat-label">Target Raise</div>
+            <div class="raise-stat-value">$25M</div>
+          </div>
+          <div class="raise-stat">
+            <div class="raise-stat-label">Soft Committed</div>
+            <div class="raise-stat-value green">$12M</div>
+          </div>
+          <div class="raise-stat">
+            <div class="raise-stat-label">In Discussion</div>
+            <div class="raise-stat-value yellow">$8M</div>
+          </div>
+          <div class="raise-stat">
+            <div class="raise-stat-label">Remaining</div>
+            <div class="raise-stat-value">$5M</div>
+          </div>
+        </div>
+        <div class="raise-progress-wrap">
+          <div class="raise-progress-bar">
+            <div class="raise-committed" style="width:48%">Committed 48%</div>
+            <div class="raise-discussing" style="width:32%">Discussing 32%</div>
+          </div>
+        </div>
+        <canvas id="raiseChart" height="180"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCENARIO PLANNING SECTION ============ -->
+  <section class="section" id="section-scenario">
+    <div class="section-header">
+      <h1>Scenario Planning</h1>
+      <p>Model base, bull, and bear cases for your financial projections</p>
+    </div>
+
+    <div class="scenario-controls">
+      <div class="scenario-inputs-card">
+        <div class="card-title">Input Assumptions</div>
+        <div class="scenario-sliders">
+          <div class="slider-group">
+            <label>ARR Growth Rate: <span id="growth-label">120%</span></label>
+            <input type="range" class="scenario-slider" id="growth-slider" min="40" max="200" value="120" />
+          </div>
+          <div class="slider-group">
+            <label>Gross Margin: <span id="margin-label">72%</span></label>
+            <input type="range" class="scenario-slider" id="margin-slider" min="40" max="90" value="72" />
+          </div>
+          <div class="slider-group">
+            <label>Sales Efficiency: <span id="efficiency-label">1.2x</span></label>
+            <input type="range" class="scenario-slider" id="efficiency-slider" min="50" max="200" value="120" />
+          </div>
+          <div class="slider-group">
+            <label>Churn Rate: <span id="churn-label">1.8%</span></label>
+            <input type="range" class="scenario-slider" id="churn-slider" min="10" max="100" value="18" />
+          </div>
+        </div>
+        <div class="scenario-selector">
+          <button class="scenario-btn active" data-scenario="base">Base Case</button>
+          <button class="scenario-btn" data-scenario="bull">Bull Case</button>
+          <button class="scenario-btn" data-scenario="bear">Bear Case</button>
+        </div>
+      </div>
+      <div class="scenario-output-card">
+        <div class="card-title">5-Year Projections</div>
+        <canvas id="scenarioChart" height="280"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-card full-width" style="margin-top:24px">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-title">DCF Sensitivity Analysis</div>
+          <div class="chart-subtitle">Enterprise value sensitivity to growth rate and margin</div>
+        </div>
+      </div>
+      <div class="dcf-table-wrap" id="dcf-table-wrap">
+        <!-- JS populated -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CRM ANALYTICS SECTION ============ -->
+  <section class="section" id="section-crm">
+    <div class="section-header">
+      <h1>CRM Analytics</h1>
+      <p>Pipeline health, deal velocity, and customer intelligence</p>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Total Accounts</div>
+        <div class="kpi-value">284</div>
+        <div class="kpi-change positive">↑ 47 new MTD</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Active Opportunities</div>
+        <div class="kpi-value">63</div>
+        <div class="kpi-change positive">$6.2M TCV</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Sales Cycle</div>
+        <div class="kpi-value">38 days</div>
+        <div class="kpi-change positive">↓ 6 days vs LQ</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Closed Won (MTD)</div>
+        <div class="kpi-value">$843K</div>
+        <div class="kpi-change positive">↑ 31% vs plan</div>
+      </div>
+    </div>
+
+    <div class="charts-row">
+      <div class="chart-card wide">
+        <div class="chart-card-header">
+          <div>
+            <div class="chart-title">Deal Velocity by Source</div>
+            <div class="chart-subtitle">Inbound · Outbound · Partner · PLG</div>
+          </div>
+        </div>
+        <canvas id="crmSourceChart" height="220"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <div>
+            <div class="chart-title">Win/Loss by Segment</div>
+          </div>
+        </div>
+        <canvas id="winLossChart" height="220"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-card full-width" style="margin-top:24px">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-title">Top Accounts by ARR</div>
+          <div class="chart-subtitle">Customer health score & expansion opportunity</div>
+        </div>
+        <input type="text" class="search-input" placeholder="Search accounts..." id="account-search" style="width:220px" />
+      </div>
+      <table class="data-table" id="accounts-table">
+        <thead>
+          <tr>
+            <th>Account</th><th>ARR</th><th>Segment</th><th>Health</th><th>NPS</th><th>Expansion Opp.</th><th>CSM</th>
+          </tr>
+        </thead>
+        <tbody id="accounts-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ INVESTOR CHATBOT ============ -->
+
+<!-- Floating Action Button -->
+<button class="chat-fab" id="chat-fab" title="Ask Investor AI">
+  <span class="chat-fab-icon" id="chat-fab-icon">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </span>
+  <span class="chat-fab-close" id="chat-fab-close" style="display:none">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </span>
+  <span class="chat-fab-pulse"></span>
+</button>
+
+<!-- Chat Panel -->
+<div class="chatbot-panel" id="chatbot-panel">
+
+  <!-- Header -->
+  <div class="chatbot-header">
+    <div class="chatbot-avatar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+      </svg>
+    </div>
+    <div class="chatbot-header-info">
+      <div class="chatbot-name">InvestorAI</div>
+      <div class="chatbot-status"><span class="status-dot"></span>Online · Powered by growth data</div>
+    </div>
+    <button class="chatbot-clear" id="chatbot-clear" title="Clear chat">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Quick Suggestions -->
+  <div class="chatbot-suggestions" id="chatbot-suggestions">
+    <div class="suggestions-label">Quick questions</div>
+    <div class="suggestions-grid" id="suggestions-grid">
+      <button class="suggestion-chip" data-q="What is the current ARR and growth rate?">📈 ARR & Growth</button>
+      <button class="suggestion-chip" data-q="What is the NDR and retention story?">🔁 NDR & Retention</button>
+      <button class="suggestion-chip" data-q="Tell me about the Series B fundraise.">💰 Series B Raise</button>
+      <button class="suggestion-chip" data-q="What are the unit economics?">⚖️ Unit Economics</button>
+      <button class="suggestion-chip" data-q="What is the go-to-market strategy?">🎯 GTM Strategy</button>
+      <button class="suggestion-chip" data-q="What is the valuation and how is it calculated?">📊 Valuation</button>
+      <button class="suggestion-chip" data-q="Who are the key customers?">🏢 Key Customers</button>
+      <button class="suggestion-chip" data-q="What is the burn rate and runway?">🔥 Burn & Runway</button>
+    </div>
+  </div>
+
+  <!-- Messages -->
+  <div class="chatbot-messages" id="chatbot-messages">
+    <!-- JS populated -->
+  </div>
+
+  <!-- Typing indicator -->
+  <div class="chatbot-typing" id="chatbot-typing" style="display:none">
+    <div class="typing-avatar">AI</div>
+    <div class="typing-dots"><span></span><span></span><span></span></div>
+  </div>
+
+  <!-- Input -->
+  <div class="chatbot-input-row">
+    <textarea
+      class="chatbot-input"
+      id="chatbot-input"
+      placeholder="Ask any investor question…"
+      rows="1"
+    ></textarea>
+    <button class="chatbot-send" id="chatbot-send">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="chatbot-footer-note">Data sourced from live dashboard · Q2 2026</div>
+</div>
+
+<script src="app.js"></script>
+<script src="chatbot.js"></script>
+</body>
+</html>

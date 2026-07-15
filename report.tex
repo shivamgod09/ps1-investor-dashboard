@@ -1,0 +1,414 @@
+\documentclass{book}
+
+\usepackage{graphicx,epsfig}
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb}
+\usepackage[toc,page]{appendix}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\renewcommand{\baselinestretch}{1}
+
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\topmargin}{0in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\parindent}{.3in}
+\pagestyle{plain}
+
+% --- Code listing style ---
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{red!70!black},
+    commentstyle=\color{green!50!black}\itshape,
+    numberstyle=\tiny\color{gray},
+    numbers=left,
+    stepnumber=1,
+    breaklines=true,
+    frame=single,
+    rulecolor=\color{gray!40},
+    showstringspaces=false,
+    tabsize=4,
+    captionpos=b
+}
+
+\lstdefinestyle{jsstyle}{
+    language=Java,
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{red!70!black},
+    commentstyle=\color{green!50!black}\itshape,
+    numberstyle=\tiny\color{gray},
+    numbers=left,
+    stepnumber=1,
+    breaklines=true,
+    frame=single,
+    rulecolor=\color{gray!40},
+    showstringspaces=false,
+    tabsize=4,
+    captionpos=b,
+    morekeywords={const, let, function, if, return, document, window, forEach, addEventListener, getElementById, querySelector, querySelectorAll, new, Chart, setTimeout, parseFloat, Math}
+}
+
+
+\begin{document}
+
+
+\large
+
+\thispagestyle{empty}
+\centerline{\bf A REPORT}
+\vspace*{0.3cm}
+\centerline{\bf ON}
+\vspace*{0.3cm}
+\centerline{\bf  INVESTOROS: A PREMIUM SPA DASHBOARD}
+\vspace*{2cm}
+
+\centerline{BY}
+\vspace*{1cm}
+
+\begin{center}
+	\begin{tabular}{lll}
+		Name of the student & \hspace*{1cm} ID No. & \hspace*{1cm} Discipline \\
+		Shivam Agarwal &\hspace*{1cm} 2024B3A80998G &\hspace*{1cm} M.Sc. economics \& B.E. ENI \\
+	\end{tabular}
+\end{center}
+
+\vspace*{2cm}
+\begin{center}
+	{\bf Prepared in partial fulfillment of the \\
+	Practice School - I} \\
+\end{center}
+
+\vspace*{0.5cm}
+
+\centerline{AT}
+
+\vspace*{1cm}
+        \centerline{\bf Celebal Technologies, Jaipur}
+	\vspace{0.2cm}
+	\centerline{\bf A Practice School - I}
+	\vspace{0.2cm}
+	\centerline{\bf Station of}
+	\vspace{0.5cm}
+\begin{figure}[ht]
+\epsfxsize=1.0in
+\centerline{\epsffile{logo.eps}}
+\end{figure}
+
+	\centerline{\bf BIRLA INSTITUTE OF TECHNOLOGY \& SCIENCE, PILANI}
+	\vspace*{0.5cm}
+	\centerline{\bf June, 2026}
+	\newpage
+
+\thispagestyle{empty}
+
+	\centerline{\bf BIRLA INSTITUTE OF TECHNOLOGY \& SCIENCE, PILANI}
+	\vspace*{0.2cm}
+
+    \centerline{\bf Practice School Division}
+\vspace*{0.3cm}
+
+\begin{center}
+    \begin{tabular}{@{}p{5.5cm} p{9.5cm}@{}}
+
+    Station: & Celebal Technologies \\[0.2cm]
+
+    Centre: & Jaipur \\[0.2cm]
+
+    Duration: & 8 Weeks \\[0.2cm]
+
+    Date of start: & 25 May 2026 \\[0.2cm]
+
+    Date of submission: & 18 July 2026 \\[0.2cm]
+
+    Title of the project: &  INVESTOROS: A PREMIUM SPA DASHBOARD \\[0.2cm]
+
+    ID No., Name and Disciplines of the student: & 2024B3A80998G, Shivam Agarwal, M.Sc. economics \& B.E. Electronics and Instrumentation \\[0.2cm]
+
+    Name and Designation of expert: & Rajveer Singh, Software Engineer - App Development \\[0.2cm]
+
+    Name of PS faculty member: & Prof. S Gangopadhyay \\[0.2cm]
+
+    Key words: & HTML5, CSS3, JavaScript (ES6+), Chart.js, SPA Architecture, DOM Manipulation, Responsive Design, Data Visualization, Google Fonts, CDN Integration \\[0.2cm]
+
+    Project areas: & Frontend Web Development, Data Visualization, UI/UX Design, Business Intelligence Dashboarding \\[0.2cm]
+
+    Abstract: & InvestorOS is a premium, dark-themed Single Page Application (SPA) dashboard designed specifically for portfolio managers, growth offices, and startup founders. This mid-term report documents the comprehensive frontend development completed during the first 15 days of our 30-day development sprint. By the halfway point, the entire client-side application---comprising seven fully functional dashboard sections, a keyword-driven AI chatbot interface, advanced Chart.js visualizations with gradient fills, and a complete responsive CSS architecture---has been engineered using a lean, dependency-free vanilla JavaScript approach. The remaining 15 days will focus on backend API integration, live data connectivity, and production deployment.\\[0.3cm]
+			\includegraphics[height=1.2cm]{signature.png} & \hspace*{1cm}Signature of the PS faculty member \\
+			Signature of the student & \\
+			Date & \hspace*{1cm}Date \\
+    \end{tabular}
+\end{center}
+
+
+
+	\newpage
+\centerline{\Large \bf Acknowledgements}
+\vspace*{1cm}
+
+\par\noindent
+I would like to express my sincere gratitude to the Practice School Division of BITS Pilani and my host organization, Celebal Technologies, Jaipur, for providing me with the outstanding opportunity to work on the ``INVESTOROS: A PREMIUM SPA DASHBOARD'' project. This Practice School-I experience has been immensely instrumental in bridging the gap between academic theory and real-world industry application. Working alongside seasoned industry professionals in a fast-paced web development environment has accelerated my technical growth in ways that no classroom setting could fully replicate.
+
+\vspace*{0.4cm}
+\par\noindent
+I am deeply thankful to my Practice School faculty in-charge, Prof. S Gangopadhyay, for his continuous guidance, encouragement, and valuable evaluation throughout the duration of this project. His academic insights and constructive feedback helped shape the structural, analytical, and professional direction of my work, ensuring that the final deliverable met both industry standards and academic rigour.
+
+\vspace*{0.4cm}
+\par\noindent
+I would also like to extend my heartfelt appreciation to my industry mentor, Rajveer Singh, Software Engineer -- App Development, at Celebal Technologies. His practical expertise, patience, and technical mentorship in frontend architecture, modern JavaScript patterns, data visualization with Chart.js, and responsive SPA design were crucial in helping me successfully architect, build, and iterate upon the dashboard application. The code review sessions and architectural discussions were particularly invaluable in elevating the quality of the final system beyond a simple prototype.
+
+\vspace*{0.4cm}
+\par\noindent
+I would also like to acknowledge the broader engineering culture at Celebal Technologies, which exposed me to industry-grade practices such as version control discipline, modular code architecture, and component-driven UI development---all of which I have applied directly within this project.
+
+\vspace*{0.4cm}
+\par\noindent
+Finally, I would like to thank my peers and fellow PS-I students for their camaraderie and collaborative spirit throughout this eight-week journey. Peer discussions often surfaced novel ideas and debugging approaches that improved the final outcome.
+
+	\vfill
+	\par\noindent \includegraphics[height=1.4cm]{signature.png} \\
+	\par\noindent {\bf Signature of the student}
+\tableofcontents
+
+\chapter{Introduction}
+\section{Project Overview}
+InvestorOS serves as a centralized, premium, dark-themed Single Page Application (SPA) dashboard \cite{mikowski2013spa}. It is engineered to meet the sophisticated needs of portfolio managers, growth offices, and startup founders by unifying diverse data streams into a single intuitive interface. The application seamlessly integrates executive reporting, SaaS operational growth tracking, and critical fundraising metrics \cite{tunguz2016saas}. By consolidating these typically disparate data points, InvestorOS provides a holistic, real-time overview of organizational health and financial trajectories in an easily digestible format.
+
+\section{Objectives}
+The key objectives for the first half of the 30-day development sprint were as follows:
+\begin{enumerate}
+    \item Architect and implement a fully modular, dependency-free vanilla JavaScript SPA capable of rendering seven distinct dashboard sections without page reloads.
+    \item Design and develop a comprehensive dark-themed CSS design system using CSS custom properties (\texttt{:root} variables) for consistent theming.
+    \item Integrate the Chart.js library \cite{chartjs2024} for rendering rich, interactive data visualizations including bar charts, doughnut charts, line charts, and sparklines with gradient fills.
+    \item Build an AI chatbot interface using a keyword-matching response engine trained on a curated investor knowledge base.
+    \item Ensure complete mobile responsiveness through CSS media queries and adaptive layouts.
+\end{enumerate}
+
+\chapter{Technology Review}
+\section{Choice of Vanilla Web Technologies}
+The architectural strategy for InvestorOS deliberately steps away from heavy JavaScript frameworks such as React \cite{react2024}, Vue, or Angular. Instead, the project relies strictly on modern, vanilla web development practices \cite{mdn2024js}. This approach prioritizes uncompromised modularity and extreme performance optimization. Dependencies are stringently minimized by utilizing lightweight external Content Delivery Networks (CDNs). Specifically, the application leverages Chart.js (v4.4.0) \cite{chartjs2024} for complex canvas-based data rendering and Google Fonts \cite{googlefonts2024} (Inter and Outfit) for scalable, premium typography. This strategy ensures the asset footprint remains exceptionally lean, resulting in rapid load times, decreased bandwidth usage, and smooth runtime execution even on lower-tier devices or throttled networks.
+
+\section{Chart.js for Data Visualization}
+Chart.js was selected over alternatives such as D3.js \cite{bostock2011d3} or Plotly.js due to its lightweight bundle size, declarative configuration API, and native Canvas rendering performance \cite{w3ccanvas2024}. The library provides out-of-the-box support for responsive charts, stacked bar charts, doughnut charts, multi-axis line charts, and custom gradient fills---all of which are utilized extensively across the InvestorOS dashboard modules \cite{chartjs2024}.
+
+\section{CSS Custom Properties for Theming}
+Rather than adopting a utility-first CSS framework such as Tailwind CSS, the project employs native CSS Custom Properties (\texttt{:root} variables) \cite{w3ccssprop2024} to implement a semantic dark theme globally. This approach ensures:
+\begin{itemize}
+    \item Complete control over the design system without external build tooling.
+    \item Easy future extensibility for alternate themes (e.g., light mode, high-contrast mode).
+    \item Zero CSS framework overhead, contributing to faster First Contentful Paint (FCP).
+\end{itemize}
+
+\chapter{Methodology}
+\section{Frontend Design Pattern}
+The application architecture is cleanly modularized into four distinct files, each handling a specific layer of concern:
+\begin{itemize}
+    \item \textbf{\texttt{index.html}} (781 lines) --- Structural and semantic layouts for all seven dashboard sections and the chatbot widget, using HTML5 semantic elements \cite{w3chtml5} (\texttt{<section>}, \texttt{<nav>}, \texttt{<aside>}, \texttt{<header>}).
+    \item \textbf{\texttt{styles.css}} (1625 lines) --- Complete visual theme including dark mode variables, responsive grid layouts, component styles, micro-animations, custom scrollbars, and the chatbot panel styling.
+    \item \textbf{\texttt{app.js}} (984 lines) --- Core business logic encompassing SPA navigation, Chart.js instantiation, lazy-initialization guards, dynamic DOM rendering for all sections, and interactive UI features (valuation calculator, scenario sliders, report generation).
+    \item \textbf{\texttt{chatbot.js}} (689 lines) --- Dedicated AI chatbot module with a 16-category investor knowledge base, keyword-matching response engine, typing indicators, quick suggestion chips, and rich metric pill formatting.
+\end{itemize}
+
+\section{State Management \& Navigation}
+The frontend employs a sophisticated lazy-initialization pattern for its modular tab sections to deeply optimize state management \cite{mikowski2013spa}. Router emulation is handled dynamically via native Document Object Model (DOM) manipulation \cite{mdn2024dom}, specifically utilizing HTML5 dataset selectors (\texttt{data-section}). A critical performance feature of this methodology is that charts and complex data visualizations are strictly prohibited from populating the DOM upon initial page load. Instead, they are instantiated and rendered only when the user explicitly navigates to the targeted viewport sub-page. This deferred rendering strategy significantly reduces the initial runtime memory overhead, eliminates unnecessary background processing, and ensures a highly fluid user experience \cite{nicholls2019spaperformance}.
+
+Concretely, the lazy-initialization is implemented through boolean state flags attached to the global \texttt{window} object:
+
+\begin{lstlisting}[style=jsstyle, caption={Lazy-initialization pattern in app.js}]
+if (sec === 'growth-metrics' && !window._growthInit)
+    initGrowthCharts();
+if (sec === 'scenario' && !window._scenarioInit)
+    initScenario();
+if (sec === 'crm' && !window._crmInit)
+    initCRM();
+\end{lstlisting}
+
+Each initialization function sets its corresponding flag to \texttt{true} on first invocation, ensuring that subsequent navigations to the same section do not re-render the charts or rebind event listeners.
+
+\section{Chatbot Response Architecture}
+The AI chatbot module employs a knowledge base array of 16 categorized entries. Each entry contains a set of trigger keywords and a response generator function. The response engine performs a case-insensitive substring match of the user's query against all keyword arrays, returning the first matching entry's response. If no match is found, a default fallback provides a structured summary of available topics. Each response includes formatted HTML text and an array of metric pills with colour-coded severity indicators (green, yellow, red).
+
+\begin{lstlisting}[style=jsstyle, caption={Keyword-matching response engine in chatbot.js}]
+function findAnswer(query) {
+  const q = query.toLowerCase();
+  for (const entry of KB) {
+    if (entry.keys[0] === '__default__') continue;
+    if (entry.keys.some(k => q.includes(k))) {
+      return entry.answer(q);
+    }
+  }
+  return KB[KB.length - 1].answer(q);
+}
+\end{lstlisting}
+
+\chapter{Progress Till Day 15}
+By the exact halfway point of the 30-day development sprint, the complete frontend application has been fully architected and implemented. All seven dashboard sections are operational with hardcoded mock data, the chatbot widget is fully functional, and the responsive design has been finalized across desktop and mobile viewports.
+
+\section{Phase 1: Structural \& Visual Foundation (Days 1--5)}
+\begin{itemize}
+    \item \textbf{Project Scaffolding:} The foundational \texttt{index.html} structure was fully coded (781 lines), meticulously incorporating necessary external dependency imports such as the Chart.js CDN (v4.4.0) \cite{chartjs2024} and Google Fonts \cite{googlefonts2024} (Inter and Outfit families) while adhering to modern semantic HTML5 standards \cite{w3chtml5}.
+    \item \textbf{CSS Architecture:} A robust and highly maintainable CSS variable system (\texttt{:root}) was engineered to map the semantic dark theme globally \cite{w3ccssprop2024}. This was achieved by establishing 30+ standardized variables including \texttt{--bg-base}, \texttt{--bg-surface}, \texttt{--bg-elevated}, \texttt{--bg-card}, \texttt{--text-primary}, \texttt{--text-secondary}, \texttt{--accent-purple}, \texttt{--accent-teal}, \texttt{--gradient-main}, and \texttt{--shadow-glow} to drive consistent UI micro-layouts.
+    \item \textbf{Grid Layout:} Complex, responsive CSS Grid and Flexbox layouts \cite{mdn2024cssgrid} were implemented to effectively segregate the persistent navigation sidebar (230px fixed width) from the dynamic main content viewport. A sticky topbar with backdrop blur was added for persistent context.
+    \item \textbf{Custom Scrollbar:} WebKit custom scrollbar styles were implemented for a seamless dark-themed scrolling experience across the entire application.
+    \item \textbf{Micro-Animations:} CSS keyframe animations were developed including \texttt{fadeIn}, \texttt{slideUp}, \texttt{toastIn/toastOut}, \texttt{pulse-badge}, and a \texttt{fab-pulse} ring animation for the chatbot floating action button. All transitions use custom cubic-bezier timing functions (\texttt{0.4, 0, 0.2, 1}) for premium motion design.
+\end{itemize}
+
+\section{Phase 2: Core Routing \& State Logic (Days 6--10)}
+\begin{itemize}
+    \item \textbf{SPA Navigation Emulation:} Core JavaScript logic leveraging \texttt{data-section} attributes was finalized. This mechanism empowers the seven sidebar links to seamlessly intercept clicks and toggle the visibility of their corresponding HTML sections instantly, bypassing traditional page reloads.
+    \item \textbf{Active States:} Dynamic DOM manipulation logic was written to automatically apply active styling to the currently selected navigation tab, including a gradient-highlighted left border. Additionally, it synchronizes the main topbar header text based on the active viewport context, providing clear navigational feedback to the user.
+    \item \textbf{Lazy-Load Implementation:} The deferred rendering system was fully implemented through boolean state flags on the global \texttt{window} object (e.g., \texttt{window.\_growthInit}, \texttt{window.\_scenarioInit}, \texttt{window.\_crmInit}, \texttt{window.\_fundraisingInit}, \texttt{window.\_deckInit}, \texttt{window.\_invInit}). Each section's charts and interactive elements are instantiated only on first navigation.
+    \item \textbf{Period Selector \& Export:} Interactive period buttons (Q2~2026, Q1~2026, FY~2025) with active state toggling and an export action button with toast notification feedback were implemented.
+    \item \textbf{Mobile Sidebar Toggle:} A hamburger menu toggle was wired to control sidebar visibility on mobile viewports using CSS class-based transitions.
+\end{itemize}
+
+\section{Phase 3: Dashboard Sections \& Data Visualization (Days 11--15)}
+This phase saw the construction of all seven dashboard sections and the chatbot, each with dedicated Chart.js visualizations and interactive UI components:
+
+\subsection{Executive Dashboard}
+\begin{itemize}
+    \item Six KPI cards displaying ARR (\$4.82M), NDR (114\%), Logo Acquisition (47), Churn Rate (1.8\%), LTV/CAC Ratio (5.2x), and Pipeline Velocity (\$218K/week) \cite{tunguz2016saas}, each with animated sparkline trend charts rendered via Chart.js with gradient fills using the Canvas \texttt{createLinearGradient()} API \cite{w3ccanvas2024}.
+    \item An ARR Growth \& MRR Bridge stacked bar chart (New ARR, Expansion, Churn components).
+    \item A Revenue Mix doughnut chart segmented by product category (Enterprise 48\%, Mid-Market 29\%, SMB 15\%, Professional Services 8\%).
+    \item A live Investor Activity Feed with colour-coded status indicators.
+    \item A Fundraising Readiness checklist with animated progress bar (84\% complete).
+\end{itemize}
+
+\subsection{Growth Metrics}
+\begin{itemize}
+    \item A tabbed sub-navigation system (SaaS Metrics, Cohort Analysis, Pipeline) with active state management.
+    \item Six SaaS KPI cards (MRR, CAC, LTV, Payback Period, Gross Margin, Rule of 40).
+    \item An MRR Growth Waterfall bar chart (New, Expansion, Contraction, Churn).
+    \item A CAC vs LTV multi-line trend chart with filled areas.
+    \item A dynamically generated Cohort Retention Heatmap table with colour-coded cells based on retention percentage thresholds.
+    \item A Pipeline by Stage mixed chart (bar + line with dual Y-axes).
+\end{itemize}
+
+\subsection{Investor Reporting}
+\begin{itemize}
+    \item A searchable Investor Roster with 7 entries, dynamically rendered with avatars, stage labels, and status indicators.
+    \item An Update Composer form with report type selection, period dropdown, auto-populated metric highlight chips, and a narrative text area.
+    \item A modal-based Report Preview system that renders a formatted investor update with KPI grid, and provides Send/Cancel actions.
+\end{itemize}
+
+\subsection{Board Deck Builder}
+\begin{itemize}
+    \item An 8-slide board presentation builder with a slide outline sidebar and a live preview canvas.
+    \item Each slide template (Cover, Highlights, Financial Summary, ARR Growth \& NDR, Unit Economics, Go-to-Market, Fundraising Plan, Asks \& Next Steps) is dynamically rendered with rich inline-styled content.
+    \item Navigation controls (Previous/Next), a slide counter, and Export Deck functionality.
+\end{itemize}
+
+\subsection{Fundraising Readiness}
+\begin{itemize}
+    \item A real-time Valuation Calculator accepting ARR, Revenue Multiple, Growth Rate, and Gross Margin inputs, computing an enterprise value with a quality adjustment formula and displaying a \textpm20\% range.
+    \item A Data Room Tracker displaying 6 document categories with animated progress bars.
+    \item A Series B Raise Tracker showing Committed (\$12M), In Discussion (\$8M), and Remaining (\$5M) with a stacked progress bar and a doughnut chart.
+\end{itemize}
+
+\subsection{Scenario Planning}
+\begin{itemize}
+    \item Interactive sliders for four parameters (ARR Growth Rate, Gross Margin, Sales Efficiency, Churn Rate) with real-time label updates.
+    \item Three preset scenario buttons (Base, Bull, Bear) that dynamically update all slider values.
+    \item A 5-year projection line chart that recalculates on every slider change, comparing all three scenarios.
+    \item A DCF Sensitivity Analysis heatmap table (5\texttimes5 grid) with colour-coded enterprise value cells based on growth rate and margin combinations.
+\end{itemize}
+
+\subsection{CRM Analytics}
+\begin{itemize}
+    \item Four KPI cards (Total Accounts, Active Opportunities, Avg Sales Cycle, Closed Won MTD).
+    \item A Deal Velocity by Source stacked bar chart (Inbound, Outbound, Partner, PLG).
+    \item A Win/Loss by Segment grouped bar chart (Enterprise, Mid-Market, SMB).
+    \item A searchable Top Accounts table (8 entries) displaying ARR, Segment, Health badge, NPS score, Expansion Opportunity, and assigned CSM.
+\end{itemize}
+
+\subsection{AI Chatbot Widget}
+\begin{itemize}
+    \item A floating action button with a pulsing ring animation that toggles a slide-up chat panel with spring physics (\texttt{cubic-bezier(0.34, 1.56, 0.64, 1)}).
+    \item A welcome message rendered on first open with typing indicator animation.
+    \item 8 quick-suggestion chips covering core investor questions (ARR \& Growth, NDR \& Retention, Series B Raise, Unit Economics, GTM Strategy, Valuation, Key Customers, Burn \& Runway).
+    \item A knowledge base spanning 16 topic categories including ARR/Revenue, NDR/Retention, Unit Economics, Series B Fundraise, Valuation, Rule of 40, Go-to-Market, Burn/Runway, Customers, Competition, Team, Market Size, Product, Gross Margin, Data Room, Pipeline, Investor Relations, Projections, Security/Compliance, Scenario Planning, and Cap Table.
+    \item Rich responses with formatted HTML, colour-coded metric pills, and contextual data points.
+    \item Chat history management with clear functionality and ESC/outside-click panel dismissal.
+\end{itemize}
+
+\chapter{Conclusions and Future Work}
+\section{Current Status Summary}
+As of Day 15, the entire client-side application is fully operational. All seven dashboard sections render correctly with hardcoded mock data, the SPA routing system handles navigation flawlessly across all viewports, and the AI chatbot provides comprehensive investor Q\&A coverage across 16 knowledge categories. The application comprises approximately 4,079 lines of hand-written code across four files (\texttt{index.html}: 781, \texttt{styles.css}: 1625, \texttt{app.js}: 984, \texttt{chatbot.js}: 689), achieving a zero-dependency frontend architecture apart from the Chart.js CDN and Google Fonts.
+
+\section{Future Roadmap (Days 16--30)}
+The remaining 15 days of the sprint will focus on transforming the static, mock-data-driven frontend into a production-ready, data-connected application. The forthcoming tasks include:
+
+\begin{enumerate}
+    \item \textbf{Backend API Development:} Engineering a RESTful API backend using Python and FastAPI \cite{fastapi2024} to serve live financial metrics, investor data, and CRM records \cite{fielding2000rest}. This will replace all hardcoded JavaScript arrays with dynamic API calls, enabling real-time data updates.
+    \item \textbf{Database Integration:} Implementing a SQLite \cite{sqlite2024} database layer for persistent storage of investor rosters, report history, board deck configurations, and scenario planning presets. This includes designing the Entity-Relationship schema and writing the data access layer.
+    \item \textbf{LLM-Powered Chatbot Upgrade:} Replacing the current keyword-matching chatbot engine with a Large Language Model (LLM) integration via the OpenRouter API. This will enable natural language understanding, contextual follow-up questions, and dynamic data-aware responses drawn directly from the live dashboard metrics.
+    \item \textbf{Data Pipeline (ETL):} Building a lightweight ETL pipeline using Python and Pandas to ingest, transform, and load financial data from CSV/Excel sources into the SQLite database, ensuring automated data refresh cycles.
+    \item \textbf{Authentication \& Access Control:} Implementing user authentication (login/logout) and role-based access control to restrict dashboard sections based on user roles (e.g., Analyst, Portfolio Manager, Admin).
+    \item \textbf{Production Deployment:} Containerizing the application using Docker \cite{docker2024}, conducting performance profiling, and deploying to a cloud environment with CI/CD pipeline configuration.
+    \item \textbf{Testing \& Documentation:} Writing integration tests for API endpoints, cross-browser testing for the frontend, and preparing comprehensive developer documentation.
+\end{enumerate}
+
+\begin{thebibliography}{99}
+
+\bibitem{chartjs2024}
+Chart.js Contributors, ``Chart.js -- Open Source HTML5 Charts for your website,'' Chart.js Documentation, v4.4.0, 2024. [Online]. Available: \url{https://www.chartjs.org/docs/latest/}. [Accessed: Jun. 2026].
+
+\bibitem{mdn2024js}
+Mozilla Developer Network, ``JavaScript -- MDN Web Docs,'' Mozilla Foundation, 2024. [Online]. Available: \url{https://developer.mozilla.org/en-US/docs/Web/JavaScript}. [Accessed: Jun. 2026].
+
+\bibitem{mdn2024dom}
+Mozilla Developer Network, ``Document Object Model (DOM) -- MDN Web Docs,'' Mozilla Foundation, 2024. [Online]. Available: \url{https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model}. [Accessed: Jun. 2026].
+
+\bibitem{mdn2024cssgrid}
+Mozilla Developer Network, ``CSS Grid Layout -- MDN Web Docs,'' Mozilla Foundation, 2024. [Online]. Available: \url{https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout}. [Accessed: Jun. 2026].
+
+\bibitem{w3chtml5}
+W3C, ``HTML5 -- A vocabulary and associated APIs for HTML and XHTML,'' World Wide Web Consortium (W3C), Recommendation, 2017. [Online]. Available: \url{https://www.w3.org/TR/html52/}. [Accessed: Jun. 2026].
+
+\bibitem{w3ccssprop2024}
+W3C, ``CSS Custom Properties for Cascading Variables Module Level 1,'' World Wide Web Consortium (W3C), Candidate Recommendation, 2022. [Online]. Available: \url{https://www.w3.org/TR/css-variables-1/}. [Accessed: Jun. 2026].
+
+\bibitem{w3ccanvas2024}
+W3C, ``HTML Canvas 2D Context,'' World Wide Web Consortium (W3C), Recommendation, 2023. [Online]. Available: \url{https://www.w3.org/TR/2dcontext/}. [Accessed: Jun. 2026].
+
+\bibitem{googlefonts2024}
+Google, ``Google Fonts -- Making the web more beautiful, fast, and open through great typography,'' Google LLC, 2024. [Online]. Available: \url{https://fonts.google.com/}. [Accessed: Jun. 2026].
+
+\bibitem{mikowski2013spa}
+M.~S. Mikowski and J.~C. Powell, \textit{Single Page Web Applications: JavaScript end-to-end}. Manning Publications, 2013.
+
+\bibitem{bostock2011d3}
+M.~Bostock, V.~Ogievetsky, and J.~Heer, ``D\textsuperscript{3}: Data-Driven Documents,'' \textit{IEEE Transactions on Visualization and Computer Graphics}, vol.~17, no.~12, pp.~2301--2309, Dec. 2011.
+
+\bibitem{nicholls2019spaperformance}
+B.~Nicholls, ``Performance Optimization in Single Page Applications: Lazy Loading and Code Splitting,'' \textit{Journal of Web Engineering}, vol.~18, no.~4, pp.~335--360, 2019.
+
+\bibitem{tunguz2016saas}
+T.~Tunguz and F.~Bien, \textit{Winning with Data: Transform Your Culture, Empower Your People, and Shape the Future}. Wiley, 2016.
+
+\bibitem{react2024}
+Meta Platforms, ``React -- A JavaScript library for building user interfaces,'' Meta Open Source, 2024. [Online]. Available: \url{https://react.dev/}. [Accessed: Jun. 2026].
+
+\bibitem{fastapi2024}
+S.~Ram\'{i}rez, ``FastAPI -- Modern, fast (high-performance), web framework for building APIs with Python,'' FastAPI Documentation, 2024. [Online]. Available: \url{https://fastapi.tiangolo.com/}. [Accessed: Jun. 2026].
+
+\bibitem{sqlite2024}
+D.~R. Hipp, ``SQLite -- A self-contained, high-reliability, embedded, full-featured, public-domain SQL database engine,'' SQLite Consortium, 2024. [Online]. Available: \url{https://www.sqlite.org/}. [Accessed: Jun. 2026].
+
+\bibitem{fielding2000rest}
+R.~T. Fielding, ``Architectural Styles and the Design of Network-based Software Architectures,'' Ph.D. dissertation, Dept. of Information and Computer Science, University of California, Irvine, 2000.
+
+\bibitem{docker2024}
+Docker Inc., ``Docker Documentation -- Build, Share, and Run Containerized Applications,'' Docker Inc., 2024. [Online]. Available: \url{https://docs.docker.com/}. [Accessed: Jun. 2026].
+
+\end{thebibliography}
+
+\end{document}
